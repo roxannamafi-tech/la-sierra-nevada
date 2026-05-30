@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Misión Planeta Tierra! Descubriendo los Continentes</title>
+    <style>
+        :root {
+            --primary: #2b6cb0;
+            --secondary: #319795;
+            --accent: #dd6b20;
+            --bg: #f7fafc;
+            --text: #2d3748;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            text-align: center;
+            padding: 2.5rem 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 0.5rem 0 0 0;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .intro-box {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-left: 5px solid var(--accent);
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        h2.section-title {
+            color: var(--primary);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            margin-top: 2.5rem;
+        }
+
+        /* Sistema de Pestañas para los Continentes */
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tab-btn {
+            background-color: #edf2f7;
+            border: none;
+            padding: 0.75rem 1.2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            color: var(--text);
+        }
+
+        .tab-btn:hover {
+            background-color: #e2e8f0;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .tab-content {
+            display: none;
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .info-card {
+            background-color: #f7fafc;
+            padding: 1rem;
+            border-radius: 6px;
+            border-top: 3px solid var(--secondary);
+        }
+
+        .info-card h4 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        /* Contenedores de los Juegos */
+        .games-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .game-wrapper {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .game-wrapper h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+
+        .iframe-container {
+            position: relative;
+            overflow: hidden;
+            margin: 0 auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Reflexión Final */
+        .reflection-box {
+            background: linear-gradient(135deg, #2d3748, #1a202c);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 3rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .reflection-box p {
+            font-size: 1.3rem;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .reflection-box span {
+            display: block;
+            margin-top: 1rem;
+            color: var(--secondary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>¡Misión Planeta Tierra! 🌍</h1>
+        <p>Bitácora de viaje para exploradores de 6° Grado</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="intro-box">
+            <h3>¡Hola, Explorador/a! 👋</h3>
+            <p>Hoy nos convertiremos en viajeros espaciales. Nuestro objetivo es analizar los gigantescos bloques de tierra que sobresalen de los océanos: <strong>los continentes</strong>. Haz clic en las pestañas de abajo para descubrir los secretos de cada uno.</p>
+        </div>
+
+        <h2 class="section-title">🕵️‍♂️ Expedición Continental: Guía de Viaje</h2>
+        
+        <!-- Pestañas de Navegación -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openContinent(event, 'america')">América</button>
+            <button class="tab-btn" onclick="openContinent(event, 'europa')">Europa</button>
+            <button class="tab-btn" onclick="openContinent(event, 'asia')">Asia</button>
+            <button class="tab-btn" onclick="openContinent(event, 'africa')">África</button>
+            <button class="tab-btn" onclick="openContinent(event, 'oceania')">Oceanía</button>
+            <button class="tab-btn" onclick="openContinent(event, 'antartida')">Antártida</button>
+        </div>
+
+        <!-- Contenidos de los Continentes -->
+        
+        <!-- AMÉRICA -->
+        <div id="america" class="tab-content active">
+            <h3>🌎 América: "El Gigante Extendido"</h3>
+            <p>Es un continente larguísimo que cruza el planeta casi de polo a polo, dividiéndose en tres zonas: Norte, Centro y Sur.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📍 Ubicación</h4>
+                    <p>Se encuentra completamente en el hemisferio occidental, rodeado por los océanos Glacial Ártico, Atlántico y Pacífico.</p>
+                </div>
+                <div class="info-card">
+                    <h4>⭐ Aspectos Generales</h4>
+                    <p>Tiene una variedad increíble de climas. Aquí se encuentra la selva amazónica (el pulmón del mundo) y la imponente cordillera de los Andes.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- EUROPA -->
+        <div id="europa" class="tab-content">
+            <h3>🏰 Europa: "La Cuna de la Historia"</h3>
+            <p>Aunque es pequeño en tamaño, ha tenido una enorme influencia histórica y cultural en todo el mundo.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📍 Ubicación</h4>
+                    <p>En el hemisferio norte, unida a Asia formando una gran masa de tierra llamada Eurasia, y rodeada por el Atlántico y el Mediterráneo.</p>
+                </div>
+                <div class="info-card">
+                    <h4>⭐ Aspectos Generales</h4>
+                    <p>Sus costas están llenas de penínsulas e islas. Es famoso por sus antiguas ciudades, su relieve mayormente plano y sus ríos navegables como el Danubio.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ASIA -->
+        <div id="asia" class="tab-content">
+            <h3>🏔️ Asia: "El Continente de los Récords"</h3>
+            <p>Es el continente más grande de la Tierra y también el que tiene más habitantes en todo el mundo.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📍 Ubicación</h4>
+                    <p>Se ubica principalmente en los hemisferios norte y oriental. Comparte fronteras terrestres con Europa y África.</p>
+                </div>
+                <div class="info-card">
+                    <h4>⭐ Aspectos Generales</h4>
+                    <p>Aquí todo es gigante: tiene el punto más alto del mundo (el monte Everest) y los dos países más poblados de la Tierra (China e India).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ÁFRICA -->
+        <div id="africa" class="tab-content">
+            <h3>🦁 África: "El Corazón Salvaje del Planeta"</h3>
+            <p>Es una tierra mística, conocida como la cuna de la humanidad, donde se originaron los primeros seres humanos.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📍 Ubicación</h4>
+                    <p>Está situada justo en el centro del mapa mundi, cruzada por la línea del ecuador, bañada por el Atlántico y el Índico.</p>
+                </div>
+                <div class="info-card">
+                    <h4>⭐ Aspectos Generales</h4>
+                    <p>Alberga al desierto más grande del mundo (el Sáhara) y al río más largo del planeta (el Nilo), además de impresionantes sabanas llenas de vida salvaje.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- OCEANÍA -->
+        <div id="oceania" class="tab-content">
+            <h3>🦘 Oceanía: "El Paraíso de las Islas"</h3>
+            <p>Es el continente más pequeño y está formado por una gran masa continental (Australia) acompañada de miles de islas paradisíacas.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📍 Ubicación</h4>
+                    <p>Se sitúa por completo en el hemisferio sur, flotando entre los inmensos océanos Índico y Pacífico.</p>
+                </div>
+                <div class="info-card">
+                    <h4>⭐ Aspectos Generales</h4>
+                    <p>Posee animales únicos que no existen en ningún otro lugar, como canguros y koalas, además de la Gran Barrera de Coral, visible desde el espacio.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ANTÁRTIDA -->
+        <div id="antartida" class="tab-content">
+            <h3>🐧 Antártida: "El Reino del Hielo Eterno"</h3>
+            <p>Un lugar mágico y congelado donde no viven ciudadanos permanentes, solo valientes científicos investigando el clima.</p>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>📍 Ubicación</h4>
+                    <p>Se localiza en el extremo sur del planeta, cubriendo por completo el Polo Sur geográfico.</p>
+                </div>
+                <div class="info-card">
+                    <h4>⭐ Aspectos Generales</h4>
+                    <p>Está cubierta por una capa de hielo de kilómetros de espesor. Es el lugar más frío, ventoso y seco de la Tierra. ¡Su fauna principal son los pingüinos!</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- SECCIÓN DE JUEGOS INTERACTIVOS -->
+        <h2 class="section-title">🎮 ¡Zona de Desafíos! Demuestra lo Aprendido</h2>
+        <p>Llegó el momento de poner a prueba tus habilidades de explorador con estos dos retos interactivos:</p>
+
+        <div class="games-grid">
+            
+            <!-- Juego 1: Wordwall NUEVO -->
+            <div class="game-wrapper">
+                <h3>🎯 Desafío 1: Trivia Continental</h3>
+                <p>Pon a prueba tu velocidad y memoria con este juego rápido.</p>
+                <div class="iframe-container" style="max-width: 500px; height: 380px;">
+                    <iframe style="max-width:100%" src="https://wordwall.net/es/embed/4682463126db474b8e062ef90ce2c4c7?themeId=1&templateId=8&fontStackId=0" width="500" height="380" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Juego 2: Educaplay -->
+            <div class="game-wrapper">
+                <h3>🗺️ Desafío 2: Descubriendo el Mundo Mágico</h3>
+                <p>Explora a fondo el mapa y encuentra los secretos que esconde cada rincón del planeta.</p>
+                <div class="iframe-container" style="max-width: 795px; height: 690px;">
+                    <iframe allow="fullscreen; autoplay; allow-top-navigation-by-user-activation" allowfullscreen width="100%" height="100%" frameborder="0" src="https://es.educaplay.com/juego/29105747-descubriendo_el_mundo_magico_de_los_continentes.html"></iframe>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- REFLEXIÓN FINAL -->
+        <div class="reflection-box">
+            <p>"Aunque los océanos nos separen físicamente y los continentes nos den identidades diferentes, compartimos un único y hermoso hogar. Conocer nuestro planeta es el primer paso para aprender a respetarlo, cuidarlo y entender que, al final del día, todos somos ciudadanos del mismo mundo."</p>
+            <span>💡 ¡Gracias por completar la misión de hoy, gran explorador!</span>
+        </div>
+
+    </div>
+
+    <script>
+        function openContinent(evt, continentName) {
+            var i, tabcontent, tablinks;
+            
+            // Ocultar todos los contenidos de las pestañas
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+
+            // Quitar la clase "active" de todos los botones
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+
+            // Mostrar la pestaña actual y añadir la clase activa al botón
+            document.getElementById(continentName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
+</body>
+</html>
