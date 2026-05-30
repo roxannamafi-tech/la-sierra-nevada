@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guardianes del Corazón del Mundo - Sierra Nevada</title>
+    <style>
+        /* --- ESTILOS GENERALES Y ANIMACIONES DE NATURALEZA --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0b251a 0%, #133a27 50%, #1c5238 100%);
+            color: #f0f5f2;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Partículas doradas/verdes flotantes simulan sabiduría ancestral y naturaleza viva */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                radial-gradient(circle, rgba(212,175,55,0.15) 1px, transparent 1px),
+                radial-gradient(circle, rgba(144,238,144,0.1) 2px, transparent 2px);
+            background-size: 40px 40px, 60px 60px;
+            animation: particleMovement 20s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes particleMovement {
+            0% { background-position: 0px 0px; }
+            100% { background-position: 40px 100px; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- CABECERA --- */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #d4af37; /* Oro tradicional */
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-style: italic;
+            color: #cbdcd3;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* --- MEDIDOR DE EQUILIBRIO (INTERACTIVO) --- */
+        .balance-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        .balance-title {
+            font-weight: bold;
+            color: #9cdcb2;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bar-container {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            height: 25px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(212,175,55,0.3);
+        }
+
+        .bar-fill {
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, #d4af37, #4caf50);
+            transition: width 0.5s ease-in-out;
+            box-shadow: 0 0 10px rgba(212,175,55,0.5);
+        }
+
+        /* --- GRILLA DE LOS 4 PUEBLOS --- */
+        .pueblos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .pueblo-card {
+            background: rgba(255, 255, 255, 0.07);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pueblo-card:hover, .pueblo-card.active {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            border-color: #d4af37;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .pueblo-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .pueblo-card h3 {
+            font-size: 1.4rem;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        /* --- VISUALIZADOR DINÁMICO DE INFORMACIÓN --- */
+        .info-display {
+            background: rgba(13, 35, 26, 0.85);
+            border-radius: 20px;
+            padding: 35px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            margin-bottom: 40px;
+            min-height: 300px;
+        }
+
+        .info-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-header h2 {
+            color: #d4af37;
+            font-size: 2rem;
+        }
+
+        .info-content {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #e2ede7;
+        }
+
+        .info-block {
+            margin-bottom: 20px;
+        }
+
+        .info-block strong {
+            color: #9cdcb2;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        /* --- SECCIÓN INTERACTIVA: EL POPORO Y LA OFRENDA --- */
+        .interact-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .interact-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .interact-box h4 {
+            color: #d4af37;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            color: #fff;
+            font-size: 1rem;
+            resize: none;
+            margin-bottom: 15px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #d4af37;
+        }
+
+        button {
+            background: linear-gradient(90deg, #d4af37, #b8931d);
+            color: #0b251a;
+            border: none;
+            padding: 12px 25px;
+            font-weight: bold;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(212,175,55,0.4);
+        }
+
+        .thought-log {
+            max-height: 180px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+
+        .thought-item {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            border-left: 3px solid #d4af37;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #a3bfae;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>El Corazón del Mundo</h1>
+        <p>Simulador Pedagógico Interactivo de la Sierra Nevada de Santa Marta. Explora la sabiduría, costumbres y cosmovisión de los cuatro pueblos originarios encargados de mantener el equilibrio espiritual de la Tierra. Desarrollado para Etnoeducación.</p>
+    </header>
+
+    <!-- Barra de Equilibrio Territorial -->
+    <div class="balance-section">
+        <div class="balance-title" id="balance-text">
+            🌱 Equilibrio Espiritual de la Sierra: 50% (Estado Inicial)
+        </div>
+        <div class="bar-container">
+            <div class="bar-fill" id="balance-bar"></div>
+        </div>
+    </div>
+
+    <!-- Panel de los 4 Pueblos -->
+    <div class="pueblos-grid">
+        <div class="pueblo-card active" onclick="mostrarPueblo('kogui', this)">
+            <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRcMtwpOnK2KR3CixaD8RNtJbLIn33H0KcKR2IQ_ITRw4c8m178jSmp-JE_qCmYyNspYD768Rkk4-AV5L4" alt="Comunidad Kogui">
+            <h3>KOGUI</h3>
+        </div>
+        <div class="pueblo-card" onclick="mostrarPueblo('arhuaco', this)">
+            <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcS0zVmaJH2cW7rYVCgQ62DuBmvpE7a7eNsOREdmMhCRx4EGrpanK_KI43DcgD9KXfxK1AiGnbigE8wlvlw" alt="Comunidad Arhuaco">
+            <h3>ARHUACO</h3>
+        </div>
+        <div class="pueblo-card" onclick="mostrarPueblo('wiwa', this)">
+            <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcSw7KhlT7fWhyU4GL0G9P2bVDs9zPjtMSR3OnmEVXVxroIP5MmNz4v0_cRJhCapsR86wBdv1gZz2xCUJoM" alt="Comunidad Wiwa">
+            <h3>WIWA</h3>
+        </div>
+        <div class="pueblo-card" onclick="mostrarPueblo('kankuamo', this)">
+            <img src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcRo38JgdqIvWAJjXzxK4iNwPvj7i9sPb9NUargJXo2RI-DAM9aX3jUhgi-X-4vYH9WbdxPavZyEI4fqVhw" alt="Territorio Ancestral Kankuamo">
+            <h3>KANKUAMO</h3>
+        </div>
+    </div>
+
+    <!-- Visualizador de Contenido Dinámico -->
+    <div class="info-display" id="contenedor-info">
+        <!-- El contenido inicial se carga dinámicamente mediante JS -->
+    </div>
+
+    <!-- Sección de Interacción Ética -->
+    <div class="interact-section">
+        <!-- El Poporo y la Ofrenda de Pensamiento -->
+        <div class="interact-box">
+            <h4>✍️ Ofrendar un Pensamiento (Al कामकाज - Zhigoneshi)</h4>
+            <p style="font-size: 0.9rem; color: #cbdcd3; margin-bottom: 12px;">En la cosmovisión de la Sierra, los pensamientos deben ser depositados con respeto. Escribe una reflexión etnoeducativa para sanar el territorio.</p>
+            <textarea id="input-pensamiento" placeholder="Escribe aquí tu pensamiento pedagógico o mensaje de respeto a la Madre Tierra..."></textarea>
+            <button onclick="registrarOfrenda()">Ofrendar Palabra al Territorio</button>
+        </div>
+
+        <!-- Registro de Pensamientos -->
+        <div class="interact-box">
+            <h4>🪵 Bitácora de la Línea Negra (Ofrendas registradas)</h4>
+            <div class="thought-log" id="log-pensamientos">
+                <div class="thought-item">El conocimiento y respeto por los pueblos originarios es el primer paso para sanar el mundo.</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 - Repositorio de Etnoeducación e Interculturalidad | Sierra Nevada de Santa Marta</p>
+    </footer>
+</div>
+
+<script>
+    // Base de datos de los Pueblos Indígenas
+    const datosPueblos = {
+        kogui: {
+            nombre: "Pueblo Kogui (Kágaba)",
+            costumbres: "Considerados los guardianes más estrictos de la Ley de Origen. Viven en bohíos circulares de paja y piedra que representan el universo. Sus líderes espirituales son los Mamos, encargados de comunicarse con Jate Kulchavita (el Sol) y Aluna (la mente universal de la creación).",
+            vestimenta: "Visten trajes de lienzo de algodón blanco tejido por ellos mismos, su ropaje es holgado y representa la pureza de la naturaleza serrana.",
+            rol: "Preservación espiritual absoluta. Realizan pagamentos sagrados en lagunas y picos nevados para evitar el colapso del ecosistema global.",
+            dato: "Hablan la lengua kággaba y basan su ordenamiento en mantener intactas las directrices de la Madre Espiritual."
+        },
+        arhuaco: {
+            nombre: "Pueblo Arhuaco (Ika)",
+            costumbres: "Organizados en una sólida estructura política y comunitaria. Son famosos por tejer la mochila Arhuaca (Tutu), la cual cuenta una historia única mediante sus figuras geométricas. Utilizan el Poporo desde el momento en que un joven es considerado adulto para registrar sus reflexiones cotidianas.",
+            vestimenta: "Llevan una manta de lana gruesa cruzada con líneas oscuras y el emblemático 'Tutusoma', un gorro cónico blanco de algodón tejido que simboliza la pureza de los picos nevados de la Sierra.",
+            rol: "Mediadores institucionales y defensores activos de la Línea Negra territorial ante entidades nacionales e internacionales.",
+            dato: "Su capital espiritual es Nabusímake, un lugar sagrado amurallado con piedra en el corazón del territorio."
+        },
+        wiwa: {
+            nombre: "Pueblo Wiwa (Arsarios / Sanhá)",
+            costumbres: "Profundos conocedores de la botánica medicinal de las zonas bajas y medias de la Sierra. Su nombre significa 'procreadores' o 'los que originan calidez'. Tienen una tradición oral bellísima centrada en los cantos sagrados y la palabra sanadora impartida por los Mamos comunitarios.",
+            vestimenta: "Trajes blancos tradicionales similares a sus hermanos, complementados con collares de chaquiras y elementos que representan los ríos de la vertiente norte.",
+            rol: "Portadores de la palabra y guardianes de las cuencas hidrográficas. Son los encargados de la comunicación y el equilibrio de las vertientes de agua.",
+            dato: "Tradicionalmente utilizan la fibra de fique para tejer hamacas, mochilas y cuerdas de alta resistencia espiritual."
+        },
+        kankuamo: {
+            nombre: "Pueblo Kankuamo",
+            costumbres: "Ubicados principalmente en la vertiente suroriental (Atánquez). Son el pueblo que sufrió el mayor impacto del proceso de colonización, perdiendo parte de su lengua original. Actualmente viven un proceso histórico de re-etnización y recuperación cultural integral de sus tradiciones ancestrales.",
+            vestimenta: "En su proceso de recuperación, adoptan trajes de lienzo blanco y se destacan por sus tejidos coloridos utilizando fibras naturales de fique.",
+            rol: "Guardianes de la memoria y la resiliencia cultural. Representan la fuerza de la reconstrucción étnica y la defensa del territorio.",
+            dato: "Son reconocidos por la música de chicote y gaita, expresiones musicales que conectan su historia con la Madre Tierra."
+        }
+    };
+
+    let progresoEquilibrio = 50;
+
+    // Función para renderizar dinámicamente la información
+    function mostrarPueblo(puebloKey, elementoCard) {
+        // Remover clase activa previa
+        document.querySelectorAll('.pueblo-card').forEach(card => card.classList.remove('active'));
+        // Agregar clase activa a la tarjeta seleccionada
+        elementoCard.classList.add('active');
+
+        const pueblo = datosPueblos[puebloKey];
+        const contenedor = document.getElementById('contenedor-info');
+
+        contenedor.innerHTML = `
+            <div class="info-header">
+                <h2>${pueblo.nombre}</h2>
+            </div>
+            <div class="info-content">
+                <div class="info-block">
+                    <strong>🍂 Costumbres y Tradiciones:</strong>
+                    <p>${pueblo.costumbres}</p>
+                </div>
+                <div class="info-block">
+                    <strong>🧥 Vestimenta e Identidad:</strong>
+                    <p>${pueblo.vestimenta}</p>
+                </div>
+                <div class="info-block">
+                    <strong>🏔️ Rol Espiritual y Territorial:</strong>
+                    <p>${pueblo.rol}</p>
+                </div>
+                <div class="info-block">
+                    <strong>💡 Dato Destacado:</strong>
+                    <p>${pueblo.dato}</p>
+                </div>
+            </div>
+        `;
+
+        // Aumentar sutilmente la barra de equilibrio por leer e investigar
+        modificarEquilibrio(5);
+    }
+
+    // Lógica interactiva para la barra de equilibrio
+    function modificarEquilibrio(cantidad) {
+        progresoEquilibrio = Math.min(progresoEquilibrio + cantidad, 100);
+        document.getElementById('balance-bar').style.width = progresoEquilibrio + '%';
+        
+        let estadoText = "Equilibrio Estable";
+        if(progresoEquilibrio >= 85) estadoText = "Armonía Ancestral Plena ✨";
+        else if(progresoEquilibrio >= 65) estadoText = "Territorio Sanando 🌱";
+
+        document.getElementById('balance-text').innerText = `🌱 Equilibrio Espiritual de la Sierra: ${progresoEquilibrio}% (${estadoText})`;
+    }
+
+    // Registrar pensamientos en el simulador
+    function registrarOfrenda() {
+        const input = document.getElementById('input-pensamiento');
+        const texto = input.value.trim();
+
+        if (texto === "") {
+            alert("Por favor, escribe un pensamiento respetuoso antes de enviarlo a la Sierra.");
+            return;
+        }
+
+        const log = document.getElementById('log-pensamientos');
+        const nuevoItem = document.createElement('div');
+        nuevoItem.className = 'thought-item';
+        nuevoItem.innerText = texto;
+        
+        // Insertar al inicio de la bitácora
+        log.insertBefore(nuevoItem, log.firstChild);
+        
+        // Limpiar input y subir el medidor de equilibrio
+        input.value = "";
+        modificarEquilibrio(10);
+    }
+
+    // Inicializar con el pueblo Kogui al cargar la página
+    window.onload = function() {
+        mostrarPueblo('kogui', document.querySelector('.pueblo-card'));
+        document.getElementById('balance-bar').style.width = '50%';
+    };
+</script>
+
+</body>
+</html>
